@@ -36,13 +36,12 @@ class SelectRoleActivity : AppCompatActivity() {
     }
 
     private fun openLoginFragment() {
-        val fragment = LoginFragment()
-        val bundle = Bundle()
-        bundle.putString("user_role", selectedRole)
-        fragment.arguments = bundle
+        val sharedPref = getSharedPreferences("UserData", MODE_PRIVATE)
+        sharedPref.edit().putString("user_role", selectedRole).apply()
+
 
         supportFragmentManager.beginTransaction()
-            .replace(android.R.id.content, fragment)
+            .replace(android.R.id.content, LoginFragment())
             .addToBackStack(null)
             .commit()
     }
