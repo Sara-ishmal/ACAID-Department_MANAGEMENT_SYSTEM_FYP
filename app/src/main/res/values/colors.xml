@@ -3,5 +3,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#636AE7</color>
+    <color name="light_primary">#E1E0F6</color>
+    <color name="light_blue">#E3F2FD</color>
+    <color name="light_green">#E8F5E9</color>
+    <color name="light_orange">#FFF3E0</color>
+    <color name="light_pink">#FCE4EC</color>
+    <color name="light_purple">#EDE7F6</color>
+    <color name="light_yellow">#FFFDE7</color>
+    <color name="light_red">#FBF5F6</color>
+    <color name="text_primary">#333333</color>
+    <color name="text_secondary">#777777</color>
+    <color name="divider_grey">#DDDDDD</color>
+    <color name="icon_grey">#A6A2A2</color>
+    <color name="icon_dark_grey">#555555</color>
 
 </resources>

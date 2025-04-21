@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:weightSum="3"
+        android:layout_marginTop="10dp"
+        android:padding="13dp">
+
+        <FrameLayout
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/circle_bg"
+           >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/groupDp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/uos_logo"
+                android:scaleType="centerCrop"
+                android:contentDescription="Profile Picture"
+                app:shapeAppearanceOverlay="@style/CircularShape" />
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2.2"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Group Name"
+                android:id="@+id/tvGroupName"
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:layout_width="180dp"
+                android:height="40dp"
+                android:layout_height="wrap_content"
+                android:text="Group subtitle"
+                android:textSize="11sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/text_secondary"
+                android:id="@+id/tvGroupSubtitle"
+                android:layout_centerVertical="true"
+                />
+
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_weight="1"
+            android:textSize="11sp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="04/18/2025"
+            android:padding="4dp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DEDCDC"/>
+</LinearLayout>

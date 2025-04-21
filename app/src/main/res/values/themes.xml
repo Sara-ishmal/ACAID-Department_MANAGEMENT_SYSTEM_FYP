@@ -1,8 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Acaid" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">#673AB7</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/light_primary</item>
         <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
     </style>
 
     <style name="Theme.Acaid" parent="Base.Theme.Acaid" />

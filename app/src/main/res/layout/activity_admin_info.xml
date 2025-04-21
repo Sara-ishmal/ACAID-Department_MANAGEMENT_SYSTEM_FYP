@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#F5F5F5">
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:gravity="center_horizontal">
+
+         <!-- Title -->
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Admin Information"
+             android:textSize="24sp"
+             android:textStyle="bold"
+             android:textColor="#000000"/>
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Software Engineering Department"
+             android:textSize="15sp"
+             android:textColor="#333333"
+             android:layout_marginBottom="24dp" />
+
+
+         <!-- Full Name -->
+         <EditText
+             android:id="@+id/etAdminName"
+             android:layout_width="match_parent"
+             android:layout_height="48dp"
+             android:hint="Full Name"
+             android:background="@drawable/edittext_bg"
+             android:padding="12dp"
+             android:textSize="14sp" />
+
+
+
+         <!-- Role Title Spinner -->
+         <Spinner
+             android:id="@+id/spinnerRoleTitle"
+             android:layout_width="match_parent"
+             android:layout_height="48dp"
+             android:layout_marginTop="16dp"
+             android:background="@drawable/form_input_bg"
+             android:padding="8dp"
+             android:spinnerMode="dropdown" />
+
+         <Button
+             android:id="@+id/btnSaveAdmin"
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:text="Save Information"
+             android:textAllCaps="false"
+             android:backgroundTint="@color/primary"
+             android:textColor="#FFFFFF"
+             android:textSize="16sp"
+             android:layout_marginTop="16dp"
+             android:background="@drawable/btn_bg" />
+     </LinearLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical"
+         android:gravity="center"
+         android:id="@+id/progressBar"
+         android:visibility="gone"
+         >
+         <ProgressBar
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:layout_marginTop="16dp"
+             />
+     </LinearLayout>
+ </LinearLayout>
+
+</ScrollView>

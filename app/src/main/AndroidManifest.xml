@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -12,6 +15,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Acaid"
         tools:targetApi="31">
+        <activity
+            android:name=".Ui.StudentDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.TeacherDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.AdminDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.AdminInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.TeacherInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.StudentInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Ui.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".Ui.SelectRoleActivity"
             android:exported="false"
@@ -27,7 +54,7 @@
         </activity>
         <activity
             android:name=".Ui.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
