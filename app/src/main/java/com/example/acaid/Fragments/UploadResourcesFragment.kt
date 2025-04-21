@@ -73,7 +73,7 @@ class UploadResourcesFragment : Fragment() {
 
     private fun setupSpinners() {
         val classNames = classIdMap.keys.toList()
-        binding.spinnerClasses.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, classNames)
+        binding.spinnerClasses.adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_dropdown_item, classNames)
         val resourceTypes = listOf(
             "PDF (.pdf)",
             "PowerPoint (.ppt/.pptx)",

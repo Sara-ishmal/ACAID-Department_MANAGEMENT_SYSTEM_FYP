@@ -37,6 +37,7 @@ class StudentDashboardActivity : AppCompatActivity() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.white)
 
         val viewPager=binding.myViewPager
+        viewPager.offscreenPageLimit = 5
         viewPager.adapter= ViewPagerAdapter(this)
 
         val tabLayout=binding.myTabLayout

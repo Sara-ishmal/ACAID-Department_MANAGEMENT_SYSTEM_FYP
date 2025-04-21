@@ -60,19 +60,26 @@
             android:orientation="vertical">
 
 
-            <Button
+            <TextView
+                android:id="@+id/tvMonth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="January"
+                android:gravity="center"
+                android:background="@drawable/rounded_background"
                 android:backgroundTint="@color/primary"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp" />
 
-            <Button
+            <TextView
+                android:id="@+id/tvWeek"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Week 1"
+                android:background="@drawable/rounded_background"
+                android:gravity="center"
+                android:textStyle="bold"
                 android:backgroundTint="@color/light_primary"
                 android:textColor="@color/primary"
                 android:layout_marginTop="8dp" />
