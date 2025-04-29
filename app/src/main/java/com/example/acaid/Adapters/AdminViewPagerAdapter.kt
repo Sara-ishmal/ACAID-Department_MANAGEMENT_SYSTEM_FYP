@@ -11,8 +11,7 @@ import com.example.acaid.Fragments.ResourcesFragment
 
 class AdminViewPagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
     val fragments= listOf(
-        AdminHomeFragment(),
-        ResourcesFragment(), ChatFragment(),
+        AdminHomeFragment(), ChatFragment(),
         CreateScheduleFragment(), ProfileFragment()
     )
     override fun getItemCount(): Int = fragments.size

@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:columnCount="2"
-                android:rowCount="3"
+                android:rowCount="4"
                 android:alignmentMode="alignMargins"
                 android:columnOrderPreserved="false"
                 android:useDefaultMargins="true">
@@ -184,6 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     app:cardElevation="3dp"
+                    android:id="@+id/attendanceCard"
                     app:cardCornerRadius="12dp"
                   >
 
@@ -209,6 +210,7 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -218,6 +220,7 @@
                     app:cardCornerRadius="12dp">
 
                     <LinearLayout
+                        android:id="@+id/upcomingEvents"
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:orientation="vertical"
@@ -228,46 +231,19 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_books" />
+                            android:src="@drawable/event_list" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="New Resources"
+                            android:text="Upcoming Events"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="12dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="12dp"
-                        android:background="@drawable/bg_schedule">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_class" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Today's Classes"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
+                    android:id="@+id/assignmentCard"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     app:cardElevation="3dp"
@@ -284,46 +260,22 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_assignment" />
+                            android:src="@drawable/ic_books" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pending Task"
+                            android:text="Assignments"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="12dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="12dp"
-                        android:background="@drawable/bg_slide">
 
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/ic_continue" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Continue Slide"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
+                    android:id="@+id/noticeCard"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     app:cardElevation="3dp"
@@ -349,6 +301,37 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="2"
+                    android:layout_columnSpan="2"
+                    android:layout_rowSpan="2"
+                    android:layout_rowWeight="2"
+                    app:cardElevation="3dp"
+                    app:cardCornerRadius="12dp">
+
+                    <LinearLayout
+                        android:id="@+id/cgpaCalculator"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="12dp">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/calculator" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="GPA and CCGPA Calculator"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
             </GridLayout>
 
@@ -360,19 +343,35 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp" />
+
             <TextView
                 android:id="@+id/motivationQuote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_quote"
-                android:text="“Every expert was once a beginner. Keep going!”"
-                android:textStyle="italic"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="60dp" />
+                android:layout_marginBottom="60dp"
+                android:drawableStart="@drawable/ic_quote"
+                android:gravity="center"
+                android:text="“Every expert was once a beginner. Keep going!”"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="italic" />
         </LinearLayout>
+            <LinearLayout
+                android:id="@+id/bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/profile_bg"
+                android:gravity="center_horizontal">
+
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:gravity="center"
+                    android:layout_height="50dp"
+                    android:src="@drawable/acaid_logo" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

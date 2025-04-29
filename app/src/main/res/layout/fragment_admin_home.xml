@@ -56,7 +56,6 @@
                     android:layout_marginBottom="20dp"
                     android:drawableStart="@drawable/search"
                     android:drawablePadding="8dp" />
-
                 <ImageView
                     android:id="@+id/notificationIcon"
                     android:layout_weight="1"
@@ -94,7 +93,7 @@
                 android:backgroundTint="@color/primary">
 
                 <LinearLayout
-                    android:padding="16dp"
+                    android:padding="22dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:background="@drawable/profile_bg"
@@ -116,6 +115,21 @@
                         android:text="Role: Department Admin"
                         android:textSize="16sp"
                         android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="University of Sargodha"
+                        android:textStyle="italic"
+                        android:textSize="12sp"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/light_primary" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Academic Block"
+                        android:textStyle="italic"
+                        android:textSize="11sp"
+                        android:textColor="@color/light_primary" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -157,6 +171,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
+                            android:layout_margin="10dp"
                             android:src="@drawable/ic_books" />
 
                         <TextView
@@ -187,6 +202,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
+                            android:layout_margin="10dp"
                             android:src="@drawable/ic_notice" />
 
                         <TextView
@@ -196,6 +212,68 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_columnWeight="1"
+                    app:cardElevation="3dp"
+                    app:cardCornerRadius="12dp">
+
+                    <LinearLayout
+                        android:id="@+id/announceEvents"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:background="@drawable/bg_assignments">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/event_list"
+                            android:layout_margin="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Announce Event"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    app:cardElevation="3dp"
+                    app:cardCornerRadius="12dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:id="@+id/manageComplaint"
+                        android:background="@drawable/bg_attendance">
+
+
+                        <ImageView
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:src="@drawable/icons8_tick" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Manage Complaints"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
@@ -216,6 +294,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
+                            android:layout_margin="10dp"
                             android:src="@drawable/ic_attendance"
                             />
 

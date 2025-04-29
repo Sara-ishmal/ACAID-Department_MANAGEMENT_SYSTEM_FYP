@@ -26,7 +26,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.white)
 
         val viewPager=binding.adminViewPager
-        viewPager.offscreenPageLimit = 5
+        viewPager.offscreenPageLimit = 4
         viewPager.adapter= AdminViewPagerAdapter(this)
 
         val tabLayout=binding.adminTabLayout
@@ -36,15 +36,12 @@ class AdminDashboardActivity : AppCompatActivity() {
                     tab.setIcon(R.drawable.icons8_home)
                 }
                 1 -> {
-                    tab.setIcon(R.drawable.book)
-                }
-                2 -> {
                     tab.setIcon(R.drawable.icons8_chat_100__1_)
                 }
-                3 -> {
+                2 -> {
                     tab.setIcon(R.drawable.timetable)
                 }
-                4 -> {
+                3 -> {
                     tab.setIcon(R.drawable.profile)
                 }
             }

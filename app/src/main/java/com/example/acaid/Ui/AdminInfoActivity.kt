@@ -61,7 +61,7 @@ class AdminInfoActivity : AppCompatActivity() {
         }
 
         val adminData = hashMapOf(
-            "full name" to name,
+            "fullName" to name,
             "roleTitle" to role
         )
 

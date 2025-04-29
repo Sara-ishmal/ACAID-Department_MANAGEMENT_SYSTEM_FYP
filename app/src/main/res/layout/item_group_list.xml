@@ -19,14 +19,14 @@
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/circle_bg"
-           >
+            android:background="@drawable/dp_bg">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/groupDp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/uos_logo"
+                android:padding="6dp"
+                android:src="@drawable/group"
                 android:scaleType="centerCrop"
                 android:contentDescription="Profile Picture"
                 app:shapeAppearanceOverlay="@style/CircularShape" />

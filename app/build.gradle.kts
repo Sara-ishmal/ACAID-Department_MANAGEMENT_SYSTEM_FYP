@@ -53,6 +53,7 @@ dependencies {
 //    implementation(libs.androidx.credentials.play.services.auth)
 //    implementation(libs.googleid)
     implementation ("com.airbnb.android:lottie:3.4.0")
+//    implementation ("com.github.lzyzsd:circleprogress:1.2.1")
     implementation ("com.github.bumptech.glide:glide:4.15.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     implementation(libs.firebase.database)

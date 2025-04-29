@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.acaid.Models.GroupListModel
 import com.example.acaid.R
 
-class GroupListAdapter(private val list: MutableList<GroupListModel>): RecyclerView.Adapter<GroupListAdapter.GroupViewHolder>() {
+class GroupListAdapter(
+    private val list: MutableList<GroupListModel>,
+    private val onGroupClick: (GroupListModel) -> Unit
+) : RecyclerView.Adapter<GroupListAdapter.GroupViewHolder>() {
+
     class GroupViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val profilePicture = itemView.findViewById<com.google.android.material.imageview.ShapeableImageView>(R.id.groupDp)
         val groupName = itemView.findViewById<TextView>(R.id.tvGroupName)
@@ -29,7 +33,12 @@ class GroupListAdapter(private val list: MutableList<GroupListModel>): RecyclerV
         holder.groupName.text = currentItem.groupName
         holder.groupSubtitle.text = currentItem.groupSubtitle
         holder.date.text = currentItem.date
-        holder.profilePicture.setImageResource(R.drawable.uos_logo)
+        holder.profilePicture.setImageResource(R.drawable.group)
+        holder.itemView.setOnClickListener {
+            onGroupClick(currentItem)
+        }
+
 
     }
+
 }

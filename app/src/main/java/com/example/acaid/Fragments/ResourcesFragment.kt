@@ -97,16 +97,15 @@ class ResourcesFragment : Fragment() {
             binding.filterDocs, binding.filterImages, binding.filterText)
 
         allCards.forEach { card ->
-            val textView = card.getChildAt(0) as TextView // Assuming the first child is the TextView
-
+            val textView = card.getChildAt(0) as TextView
             if (card == selectedCard) {
-                // Set the background color and text color for the selected card
+
                 card.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary))
                 textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             } else {
-                // Set the background color and text color for unselected cards
+
                 card.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.light_primary))
-                textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.primary)) // Adjust primary_text as needed
+                textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.primary))
             }
         }
     }
