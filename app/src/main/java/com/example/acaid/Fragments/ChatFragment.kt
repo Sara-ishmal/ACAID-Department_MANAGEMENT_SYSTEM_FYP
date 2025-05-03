@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.acaid.Adapters.GroupListAdapter
 import com.example.acaid.Models.GroupListModel
@@ -92,6 +93,14 @@ class ChatFragment : Fragment() {
         } else if (role == "admin") {
             fetchCurrentUserClasses()
         }
+        binding.searchBar.addTextChangedListener { text ->
+            val searchQuery = text.toString().trim().lowercase(Locale.getDefault())
+            val filteredList = groupList.filter { group ->
+                group.groupName.lowercase(Locale.getDefault()).contains(searchQuery)
+            }
+            adapter.filterList(filteredList)
+        }
+
     }
 
     private fun fetchTodayDate() {

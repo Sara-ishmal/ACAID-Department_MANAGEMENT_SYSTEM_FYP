@@ -40,5 +40,12 @@ class GroupListAdapter(
 
 
     }
+    fun filterList(filteredGroupList: List<GroupListModel>) {
+        list.clear()
+        list.addAll(filteredGroupList)
+        notifyDataSetChanged()
+    }
+
+
 
 }

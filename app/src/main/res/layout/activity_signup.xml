@@ -145,32 +145,8 @@
                     android:background="#AAAAAA" />
             </LinearLayout>
 
-            <!-- Google Button -->
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="Continue with google"
-                android:drawableStart="@drawable/google_logo"
-                android:background="@drawable/edittext_bg"
-                android:textAllCaps="false"
-                android:textColor="#000000"
-                android:textSize="14sp" />
 
 
-            <!-- Facebook Button -->
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFacebook"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="Continue with facebook"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
-                android:drawableStart="@drawable/facebook_logo"
-                android:background="@drawable/edittext_bg"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <!-- Sign Up -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

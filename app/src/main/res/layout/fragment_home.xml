@@ -7,6 +7,7 @@
     android:background="@android:color/white">
 
     <ScrollView
+        android:id="@+id/homeScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -370,7 +371,7 @@
                     android:layout_width="120dp"
                     android:gravity="center"
                     android:layout_height="50dp"
-                    android:src="@drawable/acaid_logo" />
+                    android:src="@drawable/acaid" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

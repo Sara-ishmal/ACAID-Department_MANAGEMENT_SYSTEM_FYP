@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/homeFragmentRoot"
+    android:id="@+id/adminFragmentRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
     <ScrollView
+        android:id="@+id/adminScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -182,23 +183,22 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Update Notices -->
+
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     app:cardElevation="3dp"
+                    android:id="@+id/button_upload_notice"
                     app:cardCornerRadius="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:orientation="vertical"
-                        android:id="@+id/button_upload_notice"
                         android:gravity="center"
                         android:padding="12dp"
                         android:background="@drawable/bg_notice">
-
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
@@ -281,6 +281,7 @@
                     android:layout_columnWeight="2"
                     android:layout_columnSpan="2"
                     app:cardElevation="3dp"
+                    android:id="@+id/allClasses"
                     app:cardCornerRadius="12dp">
 
                     <LinearLayout
@@ -288,7 +289,6 @@
                         android:layout_height="120dp"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:id="@+id/allClasses"
                         android:padding="12dp">
 
                         <ImageView

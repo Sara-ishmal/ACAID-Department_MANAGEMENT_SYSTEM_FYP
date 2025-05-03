@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.acaid.Adapters.AllClassesAdapter
 import com.example.acaid.Models.AllClassesModel
@@ -18,13 +19,16 @@ import com.example.acaid.databinding.DialogAddClassBinding
 import com.example.acaid.databinding.FragmentAllClassesBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-
 class AllClassesFragment : Fragment(), AllClassesAdapter.OnClassClickListener {
     private var _binding: FragmentAllClassesBinding? = null
     private val binding get() = _binding!!
+    private val originalClassList = mutableListOf<AllClassesModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val classList = mutableListOf(AllClassesModel("BSR25S1", "BSSE Regular 1 (2025-2029) - Semester 1", listOf()),
+        originalClassList.clear()
+        originalClassList.addAll(listOf(
+            AllClassesModel("BSR25S1", "BSSE Regular 1 (2025-2029) - Semester 1", listOf()),
             AllClassesModel("BSS23S4", "BSSE Self Support 2 (2023-2027) - Semester 4", listOf()),
             AllClassesModel("BSS22S6", "BSSE Self Support 2 (2022-2026) - Semester 6", listOf()),
             AllClassesModel("BSR24S2", "BSSE Regular 1 (2024-2028) - Semester 2", listOf()),
@@ -39,15 +43,31 @@ class AllClassesFragment : Fragment(), AllClassesAdapter.OnClassClickListener {
             AllClassesModel("BSS24S2", "BSSE Self Support 1 (2024-2028) - Semester 2", listOf()),
             AllClassesModel("MSS24S2", "MSSE Self Support 1 (2024-2026) - Semester 2", listOf()),
             AllClassesModel("BSS25S1", "BSSE Self Support 1 (2025-2029) - Semester 1", listOf())
-        )
+        ))
 
-        val adapter = AllClassesAdapter(classList, this)
+        val adapter = AllClassesAdapter(ArrayList(originalClassList), this)
         binding.AllClassesRecyclerView.adapter = adapter
-        storeClassesInFirebase(classList)
+        storeClassesInFirebase(originalClassList)
+
+        binding.searchBar.addTextChangedListener { editable ->
+            val searchText = editable.toString().trim().lowercase()
+            val filteredList = if (searchText.isEmpty()) {
+                originalClassList
+            } else {
+                originalClassList.filter { classItem ->
+                    classItem.classId.lowercase().contains(searchText) ||
+                            classItem.className.lowercase().contains(searchText)
+                }
+            }
+
+            (binding.AllClassesRecyclerView.adapter as AllClassesAdapter).updateList(filteredList)
+        }
+
         binding.AddMoreClasses.setOnClickListener {
             addMoreClasses()
         }
     }
+
     private fun addMoreClasses() {
         val binding1= DialogAddClassBinding.inflate(layoutInflater)
         val dialogView = binding1.root
@@ -62,9 +82,9 @@ class AllClassesFragment : Fragment(), AllClassesAdapter.OnClassClickListener {
                 if (classId.isNotEmpty() && className.isNotEmpty()) {
                     val newClass = AllClassesModel(classId, className, listOf())
 
+                    originalClassList.add(newClass)
                     val adapter = binding.AllClassesRecyclerView.adapter as AllClassesAdapter
-                    adapter.list.add(newClass)
-                    adapter.notifyItemInserted(adapter.list.size - 1)
+                    adapter.updateList(originalClassList)
 
                     val db = FirebaseFirestore.getInstance()
                     db.collection("classes").document(classId).set(mapOf(
@@ -85,10 +105,7 @@ class AllClassesFragment : Fragment(), AllClassesAdapter.OnClassClickListener {
         dialogBuilder.show()
     }
 
-
-
-
-    private fun storeClassesInFirebase(classList: MutableList<AllClassesModel>) {
+    private fun storeClassesInFirebase(classList: List<AllClassesModel>) {
         val db = FirebaseFirestore.getInstance()
 
         for (classItem in classList) {
@@ -106,18 +123,15 @@ class AllClassesFragment : Fragment(), AllClassesAdapter.OnClassClickListener {
         }
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
+    ): View {
         _binding = FragmentAllClassesBinding.inflate(inflater, container, false)
         binding.AllClassesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         return binding.root
     }
-
 
     override fun onViewStudentsClicked(classId: String) {
         val db = FirebaseFirestore.getInstance()
@@ -156,9 +170,4 @@ class AllClassesFragment : Fragment(), AllClassesAdapter.OnClassClickListener {
                 Log.e("AllClassesFragment", "Failed to fetch students", e)
             }
     }
-
-
-
-
-
 }

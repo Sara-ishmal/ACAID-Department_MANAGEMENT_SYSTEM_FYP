@@ -9,7 +9,7 @@ import com.example.acaid.Models.AllClassesModel
 import com.example.acaid.Models.AllStudentsModel
 import com.example.acaid.R
 
-class AllClassesAdapter(val list: MutableList<AllClassesModel>,
+class AllClassesAdapter(var list: MutableList<AllClassesModel>,
                         private val listener: OnClassClickListener): RecyclerView.Adapter<AllClassesAdapter.AllClassesViewHolder>() {
     class AllClassesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val className=itemView.findViewById<TextView>(R.id.className)
@@ -35,6 +35,11 @@ class AllClassesAdapter(val list: MutableList<AllClassesModel>,
 
     interface OnClassClickListener {
         fun onViewStudentsClicked(classId: String)
+    }
+    fun updateList(newList: List<AllClassesModel>) {
+        list.clear()
+        list.addAll(newList)
+        notifyDataSetChanged()
     }
 
 

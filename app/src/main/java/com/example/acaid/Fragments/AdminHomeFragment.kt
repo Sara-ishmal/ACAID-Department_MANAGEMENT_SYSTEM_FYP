@@ -1,11 +1,19 @@
 package com.example.acaid.Fragments
 
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.acaid.R
@@ -49,15 +57,81 @@ class AdminHomeFragment : Fragment() {
             manageComplaint.setOnClickListener{
                 navigateToNextFragment(AdminComplaintFragment())
             }
+            notificationIcon.setOnClickListener{
+                if (userId != null) {
+                    db.collection("users")
+                        .document(userId)
+                        .get()
+                        .addOnSuccessListener { document->
+                            val notificationsEnabled=document.getBoolean("notificationsEnabled")
+                            if(notificationsEnabled==true){
+                                disableNotifications()
+                                Toast.makeText(requireContext(), "Notifications Disabled", Toast.LENGTH_SHORT).show()
+                            }else{
+                                enableNotifications()
+                                Toast.makeText(requireContext(), "Notifications Enabled", Toast.LENGTH_SHORT).show()
+                            }
+
+                        }
+                }
+            }
         }
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupSearch()
         loadUserData()
     }
+    private fun setupSearch() {
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val searchText = s.toString().trim().lowercase()
+                if (searchText.isEmpty()) return
+                when {
+                    "resources".contains(searchText) -> scrollToView(binding.uploadResources)
+                    "notices".contains(searchText) -> scrollToView(binding.buttonUploadNotice)
+                    "events".contains(searchText) -> scrollToView(binding.announceEvents)
+                    "complaints".contains(searchText) -> scrollToView(binding.manageComplaint)
+                    "manage".contains(searchText) || "classes".contains(searchText) || "students".contains(searchText) ->
+                        scrollToView(binding.allClasses)
+                    "profile".contains(searchText) || "user".contains(searchText) -> scrollToView(binding.profileCard)
+                }
+            }
+        })
+        binding.searchBar.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val searchText = binding.searchBar.text.toString().trim().lowercase()
+                performSearch(searchText)
 
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.searchBar.windowToken, 0)
+                return@setOnEditorActionListener true
+            }
+            false
+        }
+    }
+    private fun performSearch(searchText: String) {
+        when {
+            searchText.contains("resources") -> scrollToView(binding.uploadResources)
+            searchText.contains("notices")  -> scrollToView(binding.buttonUploadNotice)
+            searchText.contains("events") -> scrollToView(binding.announceEvents)
+            searchText.contains("complaints") -> scrollToView(binding.manageComplaint)
+            searchText.contains("manage") || searchText.contains("classes") || searchText.contains("students") ->
+                scrollToView(binding.allClasses)
+            searchText.contains("profile") || searchText.contains("user") -> scrollToView(binding.profileCard)
+            else -> {
+                Toast.makeText(requireContext(), "No match found for '$searchText'", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    private fun scrollToView(view: View) {
+        val location = IntArray(2)
+        view.getLocationOnScreen(location)
+        binding.adminScrollView.smoothScrollTo(0, location[1] - 200)
+    }
 
     private fun loadUserData() {
         userId?.let { uid ->
@@ -101,6 +175,22 @@ class AdminHomeFragment : Fragment() {
             .commit()
 
     }
+    private fun enableNotifications() {
+        if (userId != null) {
+            db.collection("users")
+                .document(userId)
+                .update("notificationsEnabled", true)
+        }
+    }
+    private fun disableNotifications() {
+        if (userId != null) {
+            db.collection("users")
+                .document(userId)
+                .update("notificationsEnabled", false)
+        }
+    }
+
+
 
 
 }

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.acaid.R
 
-class AllStudentsAdapter(val studentList: List<AllStudentsModel>) :
+class AllStudentsAdapter(var studentList: List<AllStudentsModel>) :
     RecyclerView.Adapter<AllStudentsAdapter.StudentViewHolder>() {
 
     class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,4 +29,8 @@ class AllStudentsAdapter(val studentList: List<AllStudentsModel>) :
     }
 
     override fun getItemCount(): Int = studentList.size
+    fun updateList(newList: List<AllStudentsModel>) {
+        studentList = newList
+        notifyDataSetChanged()
+    }
 }
