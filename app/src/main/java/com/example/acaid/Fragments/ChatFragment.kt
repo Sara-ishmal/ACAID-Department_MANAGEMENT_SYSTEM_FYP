@@ -21,6 +21,7 @@ class ChatFragment : Fragment() {
 
     private lateinit var adapter: GroupListAdapter
     private val groupList = mutableListOf<GroupListModel>()
+    private val originalGroupList = mutableListOf<GroupListModel>()
     private var currentUserClass: String? = null
     private var todayDate: String? = null
 
@@ -95,8 +96,12 @@ class ChatFragment : Fragment() {
         }
         binding.searchBar.addTextChangedListener { text ->
             val searchQuery = text.toString().trim().lowercase(Locale.getDefault())
-            val filteredList = groupList.filter { group ->
-                group.groupName.lowercase(Locale.getDefault()).contains(searchQuery)
+            val filteredList = if(searchQuery.isEmpty()){
+                originalGroupList
+            } else {
+                originalGroupList.filter { group ->
+                    group.groupName.lowercase(Locale.getDefault()).contains(searchQuery)
+                }
             }
             adapter.filterList(filteredList)
         }
@@ -125,6 +130,8 @@ class ChatFragment : Fragment() {
                             todayDate ?: "05/18/2025"
                         )
                     )
+                    originalGroupList.clear()
+                    originalGroupList.addAll(groupList)
                     adapter.notifyDataSetChanged()
                 }
         }
@@ -143,6 +150,8 @@ class ChatFragment : Fragment() {
                 )
             )
         }
+        originalGroupList.clear()
+        originalGroupList.addAll(groupList)
         adapter.notifyDataSetChanged()
     }
 

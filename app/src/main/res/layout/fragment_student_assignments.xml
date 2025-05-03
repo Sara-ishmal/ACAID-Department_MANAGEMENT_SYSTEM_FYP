@@ -41,7 +41,7 @@
             android:id="@+id/subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View and submit your assignments on time"
+            android:text="All your assignments in one place"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/title"
@@ -170,42 +170,6 @@
 
 
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/uploadButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Choose File"
-                        android:background="@drawable/rounded_background"
-                        android:textColor="@color/primary"
-                        android:backgroundTint="@color/light_primary"
-                        android:layout_marginTop="8dp"
-                        android:layout_gravity="center"/>
-                    <TextView
-                        android:id="@+id/displaySelectedFile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No file uploaded"
-                        android:padding="5dp"
-                        android:visibility="gone"
-                        android:background="@color/light_primary"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginBottom="8dp"/>
-
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/submitButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Submit Assignment"
-                        android:drawableEnd="@drawable/assign"
-                        android:textColor="@android:color/white"
-                        android:drawablePadding="20dp"
-                        android:backgroundTint="@color/primary"
-                        android:background="@drawable/rounded_background"
-                        android:layout_marginTop="8dp"
-                        android:layout_gravity="center"/>
 
 
                 </LinearLayout>
