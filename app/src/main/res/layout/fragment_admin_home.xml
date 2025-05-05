@@ -13,7 +13,6 @@
         android:fillViewport="true"
         android:scrollbars="none"
         android:padding="16dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -65,6 +64,11 @@
                     android:src="@drawable/icons8_notification"
                     android:padding="4dp" />
             </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
 
             <TextView
                 android:id="@+id/greetingText"
@@ -153,35 +157,35 @@
                 android:columnOrderPreserved="false"
                 android:useDefaultMargins="true">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:id="@+id/uploadResources"
-                    app:cardElevation="3dp"
-                    app:cardCornerRadius="12dp">
+<!--                <com.google.android.material.card.MaterialCardView-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_columnWeight="1"-->
+<!--                    android:id="@+id/uploadResources"-->
+<!--                    app:cardElevation="3dp"-->
+<!--                    app:cardCornerRadius="12dp">-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="12dp"
-                        android:background="@drawable/bg_resources">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="120dp"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:gravity="center"-->
+<!--                        android:padding="12dp"-->
+<!--                        android:background="@drawable/bg_resources">-->
 
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_margin="10dp"
-                            android:src="@drawable/ic_books" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="32dp"-->
+<!--                            android:layout_height="32dp"-->
+<!--                            android:layout_margin="10dp"-->
+<!--                            android:src="@drawable/ic_books" />-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Upload Resource"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Upload Resource"-->
+<!--                            android:textStyle="bold" />-->
+<!--                    </LinearLayout>-->
+<!--                </com.google.android.material.card.MaterialCardView>-->
 
 
                 <com.google.android.material.card.MaterialCardView
@@ -246,6 +250,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
+                    android:layout_columnSpan="2"
+                    android:layout_marginTop="10dp"
                     app:cardElevation="3dp"
                     app:cardCornerRadius="12dp"
                     >
@@ -281,6 +287,7 @@
                     android:layout_columnWeight="2"
                     android:layout_columnSpan="2"
                     app:cardElevation="3dp"
+                    android:layout_marginTop="12dp"
                     android:id="@+id/allClasses"
                     app:cardCornerRadius="12dp">
 
@@ -308,7 +315,6 @@
 
             </GridLayout>
 
-            <!-- Quote Section -->
             <TextView
                 android:id="@+id/quote"
                 android:layout_width="wrap_content"
@@ -332,5 +338,21 @@
                 android:layout_marginBottom="60dp" />
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/profile_bg"
+            android:gravity="center_horizontal">
+
+
+            <ImageView
+                android:layout_width="120dp"
+                android:gravity="center"
+                android:layout_height="50dp"
+                android:src="@drawable/acaid" />
+        </LinearLayout>
+    </LinearLayout>
     </ScrollView>
 </FrameLayout>

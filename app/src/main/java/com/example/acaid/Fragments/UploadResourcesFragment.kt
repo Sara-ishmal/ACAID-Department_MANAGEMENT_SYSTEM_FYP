@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.acaid.databinding.FragmentUploadResourcesBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class UploadResourcesFragment : Fragment() {
     private var _binding: FragmentUploadResourcesBinding? = null
     private val binding get() = _binding!!
+    private var classIdMapFiltered: Map<String, String> = emptyMap()
     private val classIdMap = mapOf(
         "BSSE Regular 1 (2025-2029) - Semester 1" to "BSR25S1",
         "BSSE Self Support 2 (2023-2027) - Semester 4" to "BSS23S4",
@@ -72,9 +74,8 @@ class UploadResourcesFragment : Fragment() {
     }}
 
     private fun setupSpinners() {
-        val classNames = classIdMap.keys.toList()
-        binding.spinnerClasses.adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_dropdown_item, classNames)
-        val resourceTypes = listOf(
+        loadTeacherClasses()
+         val resourceTypes = listOf(
             "PDF (.pdf)",
             "PowerPoint (.ppt/.pptx)",
             "Word Document (.doc/.docx)",
@@ -85,7 +86,13 @@ class UploadResourcesFragment : Fragment() {
 
         binding.spinnerResourceType.adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_dropdown_item, resourceTypes)
     }
+    private fun setupClassSpinner(filteredClassMap: Map<String, String>) {
+        val classNames = filteredClassMap.keys.toList()
+        val adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_dropdown_item, classNames)
+        binding.spinnerClasses.adapter = adapter
 
+        classIdMapFiltered = filteredClassMap
+    }
     private fun selectFile() {
         val selectedType = binding.spinnerResourceType.selectedItem.toString()
         val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -186,6 +193,27 @@ class UploadResourcesFragment : Fragment() {
 
 
     }
+    private fun loadTeacherClasses() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        firestore.collection("users").document(uid).get()
+            .addOnSuccessListener { doc ->
+                if (doc.exists()) {
+                    val classesTaught = doc.get("classesTaught") as? List<String>
+                    if (!classesTaught.isNullOrEmpty()) {
+                        val filteredClassMap = classIdMap.filterKeys { it in classesTaught }
+                        setupClassSpinner(filteredClassMap)
+                    } else {
+                        Toast.makeText(requireContext(), "No assigned classes found.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to load teacher info", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

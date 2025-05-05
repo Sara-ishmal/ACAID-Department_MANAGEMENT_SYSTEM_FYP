@@ -217,13 +217,18 @@ class ProfileFragment : Fragment() {
                             val rollNo = document.getString("rollNumber")
                             val email = document.getString("email")
                             val role= document.getString("role")
-                            if (role=="admin"){
+                            if(role=="admin"){
                                 tvRollNo.text=document.getString("roleTitle")
                                 reportProblem.visibility=View.GONE
                                 help.visibility=View.GONE
 
                             }else if(role=="student"){
                                 tvRollNo.text = rollNo
+                            }else if (role=="teacher"){
+                                val empId = document.getString("employeeId")
+                                tvRollNo.text = if (empId.isNullOrBlank()) "Unknown ID" else empId
+                                reportProblem.visibility=View.GONE
+                                help.visibility=View.GONE
                             }
                             tvFullName.text = fullName
                             tvUserEmail.text = email
@@ -339,7 +344,31 @@ class ProfileFragment : Fragment() {
                     ivEdit.visibility = View.VISIBLE
 
                 }
-            }
+            }else if(role=="teacher"){
+                editableProfileLayout.visibility = View.VISIBLE
+                etRollNo.visibility=View.GONE
+                etRole.visibility=View.GONE
+                etEmployeeId.visibility=View.VISIBLE
+                saveEdit.visibility = View.VISIBLE
+                ivEdit.visibility = View.GONE
+                etFullName.setText(tvFullName.text)
+                etEmployeeId.setText(tvRollNo.text)
+                saveEdit.setOnClickListener {
+                    val fullName = etFullName.text.toString()
+                    val employeeId = etEmployeeId.text.toString()
+
+                    updateProfileInFirestore(fullName, employeeId)
+
+                    tvFullName.text = fullName
+                    tvRollNo.text = employeeId
+                    editableProfileLayout.visibility = View.GONE
+                    saveEdit.visibility = View.GONE
+
+                    nonEditableFields.visibility = View.VISIBLE
+
+                    ivEdit.visibility = View.VISIBLE
+                }
+                }
 
 
 
@@ -370,6 +399,23 @@ class ProfileFragment : Fragment() {
                 val updatedData = hashMapOf(
                     "fullName" to fullName,
                     "roleTitle" to rollNo
+                )
+                userRef.update(updatedData as Map<String, Any>)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Profile updated", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(requireContext(), "Failed to update", Toast.LENGTH_SHORT).show()
+                    }
+            }
+
+        } else if(role=="teacher"){
+            val currentUserId = auth.currentUser?.uid
+            if (currentUserId != null) {
+                val userRef = db.collection("users").document(currentUserId)
+                val updatedData = hashMapOf(
+                    "fullName" to fullName,
+                    "employeeId" to rollNo
                 )
                 userRef.update(updatedData as Map<String, Any>)
                     .addOnSuccessListener {

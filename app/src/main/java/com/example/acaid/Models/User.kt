@@ -6,5 +6,5 @@ data class User(
     val fullName: String = "",
     val role: String = "",
     val rollNumber: String = "",
-    val userName: String = ""
+    val username: String = ""
 )

@@ -124,6 +124,15 @@
                         android:textSize="11sp"
                         android:visibility="gone"
                         android:hint="Role" />
+                    <EditText
+                        android:id="@+id/etEmployeeId"
+                        android:layout_width="wrap_content"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:layout_height="wrap_content"
+                        android:textSize="11sp"
+                        android:visibility="gone"
+                        android:hint="Employee Id" />
 
 
                 </LinearLayout>

@@ -90,10 +90,13 @@ class ChatFragment : Fragment() {
         recyclerView.adapter = adapter
 
         if (role == "student") {
-            fetchCurrentUserClass()
+            fetchStudentClass()
         } else if (role == "admin") {
-            fetchCurrentUserClasses()
+            fetchAdminClasses()
+        } else if (role == "teacher") {
+            fetchTeacherClasses()
         }
+
         binding.searchBar.addTextChangedListener { text ->
             val searchQuery = text.toString().trim().lowercase(Locale.getDefault())
             val filteredList = if(searchQuery.isEmpty()){
@@ -111,8 +114,8 @@ class ChatFragment : Fragment() {
     private fun fetchTodayDate() {
         todayDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
     }
-
-    private fun fetchCurrentUserClass() {
+   //in case of students only 1 class
+    private fun fetchStudentClass() {
         val currentUserId = auth.currentUser?.uid
         if (currentUserId != null) {
             db.collection("users")
@@ -136,8 +139,8 @@ class ChatFragment : Fragment() {
                 }
         }
     }
-
-    private fun fetchCurrentUserClasses() {
+   ///in case of admin all classes
+    private fun fetchAdminClasses() {
         fetchTodayDate()
         groupList.clear()
         for (className in list) {
@@ -154,6 +157,38 @@ class ChatFragment : Fragment() {
         originalGroupList.addAll(groupList)
         adapter.notifyDataSetChanged()
     }
+
+    //in case of teacher only classesTaught
+    private fun fetchTeacherClasses() {
+        val currentUserId = auth.currentUser?.uid
+        if (currentUserId != null) {
+            db.collection("users")
+                .document(currentUserId)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    val classesTaught = documentSnapshot.get("classesTaught") as? List<*>
+                    fetchTodayDate()
+                    groupList.clear()
+                    if (!classesTaught.isNullOrEmpty()) {
+                        for (className in classesTaught) {
+                            groupList.add(
+                                GroupListModel(
+                                    "",
+                                    className.toString(),
+                                    "Software Engineering Department",
+                                    todayDate ?: "05/18/2025"
+                                )
+                            )
+                        }
+                    }
+                    originalGroupList.clear()
+                    originalGroupList.addAll(groupList)
+                    adapter.notifyDataSetChanged()
+                }
+
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

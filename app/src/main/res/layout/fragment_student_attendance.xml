@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-           />
+            />
 
         <TextView
             android:id="@+id/title"
@@ -77,13 +77,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="15dp"
-               >
+                >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Present: 25"
+                    android:id="@+id/totalPresent"
                     android:textStyle="bold"
                     android:textColor="@color/primary"
                     android:textSize="16sp"/>
@@ -94,6 +95,7 @@
                     android:layout_weight="1"
                     android:text="Absent: 5"
                     android:textColor="@color/primary"
+                    android:id="@+id/totalAbsent"
                     android:textStyle="bold"
                     android:textSize="16sp"/>
 
@@ -102,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="83%"
+                    android:id="@+id/totalPercentage"
                     android:textStyle="bold"
                     android:textColor="#E84941"
                     android:textSize="16sp"
@@ -137,110 +140,12 @@
 
             </androidx.cardview.widget.CardView>
 
-<!--            - High attendance (above 90%) → "Great job! Your attendance is excellent. Keep up the consistency!"-->
-<!--            - Good attendance (75% - 90%) → "You're on track! Stay committed to maintaining a strong presence."-->
-<!--            - Moderate attendance (50% - 75%) → "Your attendance could improve. Aim for better consistency!"-->
-<!--            - Low attendance (below 50%) → "Attendance is low—make sure to stay engaged and present!"-->
-
-
-
-
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/StudentAttendanceRecyclerView"-->
-<!--            android:orientation="vertical"-->
-<!--            tools:itemCount="3"-->
-<!--            tools:listitem="@layout/item_attendance"/>-->
-            <androidx.cardview.widget.CardView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="4dp"
-                android:elevation="4dp"
-                android:padding="12dp">
+                tools:listitem="@layout/item_subjects"
+                android:id="@+id/rvSubjects"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <com.google.android.material.progressindicator.CircularProgressIndicator
-                        android:id="@+id/progress"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:textSize="14sp"
-                        android:progress="75"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="16dp">
-
-                        <TextView
-                            android:id="@+id/subjectName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Mobile App Dev"
-                            android:textStyle="bold"
-                            android:textSize="18sp"/>
-
-                        <TextView
-                            android:id="@+id/stats"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Present: 25 | Absent: 5"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="4dp"
-                android:elevation="4dp"
-                android:padding="12dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <com.google.android.material.progressindicator.CircularProgressIndicator
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:textSize="14sp"
-                        android:progress="75"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="OOP "
-                            android:textStyle="bold"
-                            android:textSize="18sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Present: 25 | Absent: 5"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
 
 
